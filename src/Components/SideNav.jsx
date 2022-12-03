@@ -47,7 +47,6 @@ const SideNav = () => {
                         </Link>
                     ))
                 }
-
             </div>
         </nav>
     );

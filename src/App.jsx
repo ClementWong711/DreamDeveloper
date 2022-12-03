@@ -3,8 +3,10 @@ import Footer from './Components/Footer';
 import SideNav from './Components/SideNav';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Login from './Components/Login';
+import LoginSignUpSwitch from './Components/LoginSignUpSwitch';
 
 function App() {
+  
   return (
     <Router>
       <SideNav />
@@ -12,7 +14,7 @@ function App() {
         <div className='content'>
           <Switch>
             <Route exact path="/" >
-              <Login />
+              <LoginSignUpSwitch/>
             </Route>
             <Route path="/chat">
               <h1>Chatroom</h1>

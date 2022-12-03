@@ -1,8 +1,19 @@
-import React from "react";
+import React, {useEffect} from "react";
 
 const Login = () => {
+
+    useEffect(() => {
+        fetch("http://localhost:3000/user")
+            .then(res => {
+                return res.json();
+            })
+            .then(data => {
+                console.log(data)
+            })
+    },[])
+
     return (
-        <form className="w-[400px] bg-[#0e0e0e] p-8 rounded-lg">
+        <form className="absolute h-full w-full bg-[#0e0e0e] p-8 rounded-lg backface-hidden">
             <div className="flex flex-col py-2">
                 <label className="text-gray-400">Username</label>
                 <input className="p-2 bg-[#0e0e0e] border-b-2 border-[#6138ff] focus:border-[#9c83ff] duration-300 outline-none" type="text" />
