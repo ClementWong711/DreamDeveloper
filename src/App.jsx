@@ -6,10 +6,8 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 function App() {
   return (
     <Router>
+      <SideNav />
       <div className="flex gap-6">
-        <div className="fixed">
-          <SideNav />
-        </div>
         <div className='content'>
           <Switch>
             <Route exact path="/" >
@@ -29,10 +27,9 @@ function App() {
             </Route>
           </Switch>
         </div>
-        <div className="fixed align-center">
-          <Footer />
-        </div>
+        
       </div>
+      <Footer />
     </Router>
 
   );

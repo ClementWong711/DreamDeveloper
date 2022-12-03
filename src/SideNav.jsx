@@ -18,7 +18,7 @@ const SideNav = () => {
     ]
 
     return (
-        <nav className={`text-white bg-[#0e0e0e] h-full ${open ? 'w-60' : 'w-16'} duration-500 m-3 px-4 rounded-xl pb-10`}>
+        <nav className={`text-white bg-[#0e0e0e] ${open ? 'w-60' : 'w-16'} duration-500 m-3 px-4 rounded-xl pb-10 fixed`}>
             <div className="py-3 flex justify-end">
                 <HiMenu
                     size={26}

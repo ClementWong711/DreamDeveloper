@@ -1,6 +1,8 @@
 const Footer = () => {
     return ( 
-        <footer className="text-white fixed bottom-2">Copyright 2022. DreamDeveloper by Clement</footer>
+        <footer className="w-full fixed left-0 bottom-2 flex justify-center">
+            <p className="text-white">Copyright 2022. DreamDeveloper by Clement</p>
+        </footer>
     );
 }
 export default Footer;
