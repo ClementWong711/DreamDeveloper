@@ -18,8 +18,8 @@ const LoginSignUpSwitch = () => {
             <div className="w-full flex justify-center">
                 <label className="inline-flex items-center p-2 rounded-md cursor-pointer">
                     <input id="SignOnUp" type="checkbox" className="hidden peer" />
-                    <span className="px-4 py-2 rounded-l-md dark:bg-[#6138ff] peer-checked:dark:bg-[#0e0e0e]" onClick={changeSign}>Sign In</span>
-                    <span className="px-4 py-2 rounded-r-md dark:bg-[#0e0e0e] peer-checked:bg-[#6138ff]" onClick={changeSign}>Sign Up</span>
+                    <span className="px-4 py-2 rounded-l-md dark:bg-[#00f9ff]  peer-checked:dark:bg-[#0e0e0e]" onClick={changeSign}>Sign In</span>
+                    <span className="px-4 py-2 rounded-r-md dark:bg-[#0e0e0e] peer-checked:bg-[#00f9ff]" onClick={changeSign}>Sign Up</span>
                 </label>
             </div>
             <div className={`w-[400px] h-[450px] relative preserve-3d ${sign === "SignIn" ? `` : `dream-rotate-y-180`} duration-700`}>

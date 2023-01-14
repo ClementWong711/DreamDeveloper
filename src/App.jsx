@@ -2,14 +2,16 @@ import './App.css';
 import Footer from './Components/Footer';
 import SideNav from './Components/SideNav';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import Login from './Components/Login';
 import LoginSignUpSwitch from './Components/LoginSignUpSwitch';
+import Chatroom from './ChatPage/Chat';
 
 function App() {
   
   return (
     <Router>
-      <SideNav />
+      <div className="flex flex-col justify-center h-full fixed">
+        <SideNav />
+      </div>
       <div className="min-h-screen flex items-center justify-center text-white">
         <div className='content'>
           <Switch>
@@ -17,7 +19,7 @@ function App() {
               <LoginSignUpSwitch/>
             </Route>
             <Route path="/chat">
-              <h1>Chatroom</h1>
+              <Chatroom/>
             </Route>
             <Route path="/post">
               <h1>IG post</h1>

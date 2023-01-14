@@ -18,7 +18,7 @@ const SideNav = () => {
     ]
 
     return (
-        <nav className={`text-white bg-[#0e0e0e] ${open ? 'w-60' : 'w-16'} duration-500 m-3 px-4 rounded-xl pb-10 fixed`}>
+        <nav className={`text-white bg-[#0e0e0e] ${open ? 'w-60' : 'w-16'} duration-500 m-3 px-4 rounded-xl pb-10`}>
             <div className="py-3 flex justify-end">
                 <HiMenu
                     size={26}
@@ -32,7 +32,7 @@ const SideNav = () => {
                         <Link 
                             to={menu.link} 
                             key={i} 
-                            className="flex border-b-2 border-[#0e0e0e] items-center text-sm gap-3.5 font-medium p-2 hover:border-b-2 hover:border-[#6138ff] duration-300"
+                            className="flex border-b-2 border-[#0e0e0e] items-center text-sm gap-3.5 font-medium p-2 hover:border-b-2 hover:border-[#00f9ff] duration-300"
                         >   
                             <div>{React.createElement(menu.icon, {size: "20" })}</div>
                             <h2
