@@ -1,9 +1,9 @@
 import './App.css';
-import Footer from './Components/Footer';
-import SideNav from './Components/SideNav';
+import Footer from '../Frontend/src/Components/Footer';
+import SideNav from '../Frontend/src/Components/SideNav';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import LoginSignUpSwitch from './Components/LoginSignUpSwitch';
-import Chatroom from './ChatPage/Chat';
+import LoginSignUpSwitch from '../Frontend/src/Components/LoginSignUpSwitch';
+import Chatroom from '../Frontend/src/ChatPage/Chat';
 
 function App() {
   
