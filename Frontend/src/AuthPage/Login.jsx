@@ -1,6 +1,6 @@
 import React, {useEffect} from "react";
 
-const Login = () => {
+const Login = ({user}) => {
 
     useEffect(() => {
         fetch("http://localhost:3000/user")

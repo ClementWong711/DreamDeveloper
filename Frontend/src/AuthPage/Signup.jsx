@@ -1,7 +1,13 @@
 
-const Signup = () => {
+const Signup = (props) => {
+    const onSubmit = (e) => {
+        e.preventDefault();
+        const { value } = e.target[0];
+        props.onAuth({ username: value, secret: value });
+    };
+
     return ( 
-        <form className="absolute w-full h-full bg-[#0e0e0e] p-8 rounded-lg dream-rotate-y-180 backface-hidden">
+        <form onSubmit={onSubmit} className="absolute w-full h-full bg-[#0e0e0e] p-8 rounded-lg dream-rotate-y-180 backface-hidden">
             <div className="flex flex-col py-2">
                 <label className="text-gray-400">Username</label>
                 <input className="p-2 bg-[#0e0e0e] border-b-2 border-[#00f9ff] focus:border-[#9c83ff] duration-300 outline-none" type="text" />
