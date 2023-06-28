@@ -19,7 +19,7 @@ const ChatPage = () => {
 
     
     return (
-        <div className="bg-[#0e0e0e] rounded-3xl p-5 flex w-full">
+        <div className="bg-[#0e0e0e] rounded-3xl p-5 flex h-[calc(70%)] w-[calc(70%)]">
             <ChatRoomList 
                 chatList={chatlistArr}
                 handleState={handleState}

@@ -1,6 +1,6 @@
 import ContactList from "./ContactList";
 import SearchBox from "./SearchBox";
-import React, { useState } from "react";
+import React from "react";
 
 const ChatRoomList = ({chatList, handleState}) => {
     return (

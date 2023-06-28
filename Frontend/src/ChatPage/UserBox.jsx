@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React from "react";
 import { FaRegUserCircle } from "react-icons/fa";
 
 const UserBox = () => {
