@@ -16,7 +16,10 @@ const UserBox = () => {
     const user = "Clement";
 
     return (
-        <div className="bg-[#0e0e0e] text-white m-5 px-6 p-4 flex space-x-4 rounded-xl"><span className="text-xl">{user}</span><span className="flex justify-item-center items-center">{React.createElement(FaRegUserCircle, {size: 20})}</span></div>
+        <div className="bg-[#0e0e0e] text-white m-5 px-6 p-4 flex space-x-4 rounded-xl">
+            <span className="text-xl">{user}</span>
+            <span className="flex justify-item-center items-center">{React.createElement(FaRegUserCircle, {size: 20})}</span>
+        </div>
     );
 }
 

@@ -1,11 +1,12 @@
 import ContactList from "./ContactList";
 import SearchBox from "./SearchBox";
+import React, { useState } from "react";
 
-const ChatRoomList = () => {
+const ChatRoomList = ({chatList, handleState}) => {
     return (
-        <div className="w-full">
+        <div className="w-1/3">
             <SearchBox/>
-            <ContactList/>
+            <ContactList chatList={chatList} handleState={handleState}/>
         </div>
     );
 }
