@@ -1,13 +1,13 @@
 import MessageItem from "./MessageItem";
 
-const MessageBox = ({MessageList}) => {
+const MessageBox = ({MessageList, MyUserID}) => {
     
     return ( 
-        <div className="bg-gradient-to-t from-[#0e0e0e] to-[#141414] h-[calc(80%)] mb-2">
+        <div className="bg-gradient-to-t from-[#0e0e0e] to-[#141414] h-[calc(80%)] mb-2 p-2 flex flex-col justify-end">
             {
                 
-                MessageList.map((messageDetail) => (
-                    <MessageItem messageDetail={messageDetail}/>
+                MessageList.map((messageDetail, i) => (
+                    <MessageItem key={i} messageDetail={messageDetail} MyUserID={MyUserID}/>
                 ))
             }
         </div>

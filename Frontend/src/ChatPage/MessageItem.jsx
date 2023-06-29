@@ -1,7 +1,7 @@
-const MessageItem = ({messageDetail}) => {
+const MessageItem = ({messageDetail, MyUserID}) => {
     return (
-        <div className="p-1">
-            <div className="border bg-blue-900 w-auto">{messageDetail.message}</div>
+        <div className={`p-1 flex justify-${messageDetail.userID === MyUserID ? 'end' : 'start'}`}>
+            <span className="p-1 bg-blue-900 rounded-xl">{messageDetail.message}</span>
         </div>
     );
 }
