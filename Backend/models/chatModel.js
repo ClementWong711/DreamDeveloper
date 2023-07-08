@@ -1,6 +1,9 @@
 const mongoose = require('mongoose')
+const { Schema } = mongoose;
 
-const Schema = mongoose.Schema
+const chatRoomSchemaOptions = {
+    timestamps: { createdAt: 'created_at', updatedAt: 'last_chat_time' },
+};
 
 const ChatRoomSchema = new Schema({
     userA: {
@@ -11,10 +14,10 @@ const ChatRoomSchema = new Schema({
         type: String,
         required: true
     },
-    lastChatTime: {
-        type: Date,
-        required: false
+    lastChatUser:{
+        type: String,
+        required: true
     }
-}, { timestamps: true })
+}, chatRoomSchemaOptions)
 
 module.exports = mongoose.model('Chatroom', ChatRoomSchema)

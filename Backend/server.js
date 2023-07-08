@@ -15,7 +15,7 @@ app.use((req, res, next) => {
 })
 
 // routes
-app.use('/api/chat', chatroomRoutes);
+app.use('/api/chat', chatroomRoutes)
 
 // connect to DB
 mongoose.connect(process.env.MONGO_URI)

@@ -1,39 +1,28 @@
 const express = require('express');
-const Chatroom = require('../models/chatModel')
+const {
+    createChatroom,
+    getChatrooms,
+    getChatroom,
+    deleteChatroom,
+    updateChatroom,
+} = require("../controllers/chatController")
 
 const router = express.Router();
 
-router.get('/', (req, res) => {
-    res.json({mssg: 'GET all chatroom'})
-})
+// get all chatroom
+router.get('/', getChatrooms)
 
-//GET a single chat
-router.get('/:id', (req, res) => {
-    res.json({mssg: 'GET a single chat'});
-})
+//GET a single chatroom
+router.get('/:id', getChatroom)
 
-// POST a new chat
-router.post('/', async (req, res) => {
-    const {userA, userB, lastChatTime} = req.body
+// POST a new chatroom
+router.post('/', createChatroom)
 
-    try{
-        const chatroom = await Chatroom.create({userA, userB, lastChatTime})
-        res.status.json(chatroom)
-    } catch (error) {
-        res.status(400).json({error: error.message})
-    }
-    res.json({mssg: 'POST a new chat'});
-})
-
-// DELETE a chat
-router.delete('/:id', (req, res) => {
-    res.json({mssg: 'DELETE a chat'});
-})
+// DELETE a chatroom
+router.delete('/:id', deleteChatroom)
 
 // UPDATE a chat
-router.patch('/:id', (req, res) => {
-    res.json({mssg: 'UPDATE a chat'});
-})
+router.patch('/:id', updateChatroom)
 
 
 module.exports = router

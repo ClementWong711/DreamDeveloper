@@ -5,6 +5,7 @@ import icon from "../img/myicon.png";
 import MessageBox from "./MessageBox";
 
 const ChatBox = ({chatWithUser}) => {
+
     const MyUserID = "Clement711";
     const inputRef = useRef(null);
     const [MessageList, setMessage] = useState([

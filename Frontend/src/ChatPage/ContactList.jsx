@@ -7,8 +7,8 @@ const ContactList = ({chatList, handleState}) => {
                 chatList.map((frdsDetail, i) => (
                     <ContactPersonSelect 
                         key={i}
-                        userID={frdsDetail.userID} 
-                        chatRoomID={frdsDetail.id}
+                        userID={frdsDetail.userA} 
+                        chatRoom={frdsDetail}
                         handleState={handleState}
                     />
                 ))
