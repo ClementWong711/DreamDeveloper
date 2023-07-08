@@ -9,7 +9,7 @@ const ChatPage = () => {
 
     useEffect(() => {
         const fetchChatrooms = async () => {
-            const response = await fetch(`/api/chat`);
+            const response = await fetch(`/api/chatroom`);
             const json = await response.json();
 
             if(typeof json != 'undefined'){
