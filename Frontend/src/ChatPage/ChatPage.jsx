@@ -29,6 +29,7 @@ const ChatPage = () => {
         <div className="bg-[#0e0e0e] rounded-3xl p-5 flex h-[calc(70%)] w-[calc(70%)]">
             <ChatRoomList 
                 chatList={chatroomsArr}
+                selectedChatroom={chatRoomSelected}
                 handleState={handleState}
             />
             <ChatBox chatWithUser={chatRoomSelected.userA}/>
