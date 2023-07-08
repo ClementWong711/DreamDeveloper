@@ -6,6 +6,7 @@ require('dotenv').config();
 // express app
 const app = express();
 const chatroomRoutes = require('./routes/chatroom')
+const chatmessageRoutes = require('./routes/chatmessage')
 
 // middleware
 app.use(express.json())
@@ -16,6 +17,7 @@ app.use((req, res, next) => {
 
 // routes
 app.use('/api/chatroom', chatroomRoutes)
+app.use('/api/chatmessage', chatmessageRoutes)
 
 // connect to DB
 mongoose.connect(process.env.MONGO_URI)

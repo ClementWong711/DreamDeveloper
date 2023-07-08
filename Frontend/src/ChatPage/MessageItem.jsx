@@ -10,7 +10,7 @@ const MessageItem = ({messageDetail, MyUserID}) => {
     const CurrentDateFormatted = dayjs(CurrentDate).format("YYYY-MM-DD");
 
     return (
-        <div className={`p-1 flex justify-${messageDetail.userID === MyUserID ? 'end' : 'start'}`}>
+        <div className={`p-1 flex justify-${messageDetail.sender === MyUserID ? 'end' : 'start'}`}>
             <span className="p-1 pl-2 pr-2 bg-blue-900 rounded-xl">{messageDetail.message}<span className="text-xs pl-2 text-gray-400">{(MessageTime===CurrentDateFormatted)?ShowTime:ShowDateTime}</span></span>
         </div>
     );

@@ -32,7 +32,7 @@ const ChatPage = () => {
                 selectedChatroom={chatRoomSelected}
                 handleState={handleState}
             />
-            <ChatBox chatWithUser={chatRoomSelected.userA}/>
+            <ChatBox chatWithUser={chatRoomSelected.userA} chatRoomID={chatRoomSelected._id}/>
         </div>
     );
 

@@ -1,23 +1,33 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { TbDotsVertical } from "react-icons/tb";
 import { BsFillCursorFill } from "react-icons/bs";
 import icon from "../img/myicon.png"; 
 import MessageBox from "./MessageBox";
 
-const ChatBox = ({chatWithUser}) => {
+const ChatBox = ({chatWithUser, chatRoomID}) => {
 
-    const MyUserID = "Clement711";
+    const MyUserID = "clement711";
     const inputRef = useRef(null);
-    const [MessageList, setMessage] = useState([
-        {chatRoomID: 1, userID: "Steffi123", message: "Hello World", messageTime: "2023-06-26 19:00:00", id: 1},
-        {chatRoomID: 1, userID: "Clement711", message: "Hi What!", messageTime: "2023-06-26 18:30:00", id: 2},
-        {chatRoomID: 1, userID: "Steffi123", message: "Omg", messageTime: "2023-06-26 18:26:00", id: 3},
-        {chatRoomID: 1, userID: "Clement711", message: "LALALAL mean mean", messageTime: "2023-06-26 15:00:00", id: 4}
-    ]);
+    const [MessageList, setMessages] = useState([]);
 
-    const handleSubmit = event => {
-        event.preventDefault();
+    const handleSubmit = (e) => {
+        e.preventDefault();
     };
+
+    useEffect(() => {
+        const fetchChatmessages = async () => {
+            if(typeof chatRoomID !== 'undefined'){
+                const response = await fetch(`/api/chatmessage/${chatRoomID}`);
+                const json = await response.json();
+    
+                if(typeof json != 'undefined'){
+                    setMessages(json);
+                }
+            }
+        };
+        
+        fetchChatmessages();
+    })
 
     return (
         <div className="w-full bg-[#141414] p-2 rounded-xl ml-4">
@@ -49,7 +59,7 @@ const ChatBox = ({chatWithUser}) => {
                                 messageTime: Date().toLocaleString(), 
                                 id: 5
                             }
-                            setMessage(oldMessage => [...oldMessage, newMesasge]);
+                            setMessages(oldMessage => [...oldMessage, newMesasge]);
                             inputRef.current.value = '';
                         }
                     }}
