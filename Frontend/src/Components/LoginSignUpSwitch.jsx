@@ -1,7 +1,6 @@
 import { useState } from "react";
-import Login from "./AuthPage/Login";
-import Signup from "./AuthPage/Signup";
-import "./App.css";
+import Login from "../pages/AuthPage/Login";
+import Signup from "../pages/AuthPage/Signup";
 
 const LoginSignUpSwitch = () => {
     const [sign, setSign] = useState("SignIn");

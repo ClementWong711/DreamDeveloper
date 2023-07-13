@@ -1,33 +1,40 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef } from "react";
 import { TbDotsVertical } from "react-icons/tb";
 import { BsFillCursorFill } from "react-icons/bs";
-import icon from "../img/myicon.png"; 
+import icon from "../../img/myicon.png"; 
 import MessageBox from "./MessageBox";
 
-const ChatBox = ({chatWithUser, chatRoomID}) => {
+const ChatBox = ({chatWithUser, chatRoomMessagesList, chatRoomID}) => {
 
     const MyUserID = "clement711";
     const inputRef = useRef(null);
-    const [MessageList, setMessages] = useState([]);
+    const [chatroomID, setChatroomID] = useState("")
+    const [sender, setSender] = useState("")
+    const [message, setMessage] = useState("")
+    const [error, setError] = useState(null)
 
-    const handleSubmit = (e) => {
+
+    async function handleSubmit(e) {
         e.preventDefault();
-    };
 
-    useEffect(() => {
-        const fetchChatmessages = async () => {
-            if(typeof chatRoomID !== 'undefined'){
-                const response = await fetch(`/api/chatmessage/${chatRoomID}`);
-                const json = await response.json();
-    
-                if(typeof json != 'undefined'){
-                    setMessages(json);
-                }
+        const chatMessage = { chatroomID, sender, message };
+
+        const response = await fetch(`/api/chatmessage`, {
+            method: 'POST',
+            body: JSON.stringify(chatMessage),
+            headers: {
+                'Content-Type': 'application/json'
             }
-        };
-        
-        fetchChatmessages();
-    })
+        });
+        const json = await response.json();
+
+        if (!response.ok) {
+            setError(json.error);
+        } else {
+            setError(null);
+            console.log('new message added', json);
+        }
+    }
 
     return (
         <div className="w-full bg-[#141414] p-2 rounded-xl ml-4">
@@ -38,7 +45,7 @@ const ChatBox = ({chatWithUser, chatRoomID}) => {
                 </div>
                 <span className="flex justify-item-center items-center mr-3">{React.createElement(TbDotsVertical, {size: 30})}</span>
             </div>
-            <MessageBox MessageList={MessageList} MyUserID={MyUserID}/>
+            <MessageBox MessageList={chatRoomMessagesList} MyUserID={MyUserID}/>
             <form className="flex justify-between" onSubmit={handleSubmit}>
                 <input 
                     className="bg-transparent w-[calc(80%)] border border-gray-700 rounded-3xl p-2 focus:outline-none" 
@@ -52,14 +59,9 @@ const ChatBox = ({chatWithUser, chatRoomID}) => {
                     type="submit"
                     onClick={()=> {
                         if(inputRef.current.value !== ''){
-                            const newMesasge = {
-                                chatRoomID: 1, 
-                                userID: MyUserID, 
-                                message: inputRef.current.value, 
-                                messageTime: Date().toLocaleString(), 
-                                id: 5
-                            }
-                            setMessages(oldMessage => [...oldMessage, newMesasge]);
+                            setChatroomID(chatRoomID)
+                            setSender(MyUserID)
+                            setMessage(inputRef.current.value)
                             inputRef.current.value = '';
                         }
                     }}

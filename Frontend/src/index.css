@@ -10,4 +10,12 @@ body {
   font-family: 'Heebo', sans-serif;
   background-color: rgba(0, 0, 0, 1);
 }
-
+.App {
+  text-align: center;
+}
+.disable-text-selection{
+  -moz-user-select:none; /* firefox */
+  -webkit-user-select: none; /* Safari */
+  -ms-user-select: none; /* IE*/
+  user-select: none; /* Standard syntax */
+}
