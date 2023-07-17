@@ -1,16 +1,5 @@
-import React, {useEffect} from "react";
 
-const Login = ({user}) => {
-
-    useEffect(() => {
-        fetch("http://localhost:3000/user")
-            .then(res => {
-                return res.json();
-            })
-            .then(data => {
-                console.log(data)
-            })
-    },[])
+const Login = () => {
 
     return (
         <form className="absolute h-full w-full bg-[#0e0e0e] p-8 rounded-lg backface-hidden">

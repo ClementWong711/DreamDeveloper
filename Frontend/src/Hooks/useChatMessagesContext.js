@@ -1,4 +1,4 @@
-import { ChatMessagesContext } from "../Context/chatmessage";
+import { ChatMessagesContext } from "../Context/ChatmessageContext";
 import { useContext } from "react";
 
 export const useChatMessagesContext = () => {

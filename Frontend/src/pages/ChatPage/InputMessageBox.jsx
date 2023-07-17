@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { BsFillCursorFill } from "react-icons/bs";
 
 const InputMessageBox = ({handleSubmit, setChatmessage, messageValue}) => {

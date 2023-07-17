@@ -5,8 +5,9 @@ import ChatPage from './pages/ChatPage/ChatPage';
 import UserBox from './pages/ChatPage/UserBox';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
+
 function App() {
-  
+
   return (
     <Router>
       <div className="flex flex-col justify-center h-full fixed">
@@ -18,6 +19,9 @@ function App() {
       <div className="h-screen w-screen flex justify-center items-center text-white">
         <Switch>
           <Route exact path="/" >
+            <h1>Home</h1>
+          </Route>
+          <Route path="/login">
             <LoginSignUpSwitch/>
           </Route>
           <Route path="/chat">
@@ -36,7 +40,6 @@ function App() {
       </div>
       <Footer />
     </Router>
-
   );
 }
 

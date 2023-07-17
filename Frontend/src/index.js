@@ -2,14 +2,17 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
-import { ChatMessageContextProvider } from './Context/chatmessage'
+import { ChatMessageContextProvider } from './Context/ChatmessageContext'
+import { AuthContextProvider } from './Context/AuthContext'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <ChatMessageContextProvider>
-      <App />
-    </ChatMessageContextProvider>
+    <AuthContextProvider>
+      <ChatMessageContextProvider>
+        <App />
+      </ChatMessageContextProvider>
+    </AuthContextProvider>
   </React.StrictMode>
 );
 
