@@ -1,6 +1,6 @@
 import ContactPersonSelect from "./ContactPersonSelect";
 
-const ContactList = ({chatList, selectedChatroom, handleState}) => {
+const ContactList = ({chatList, selectedChatroom, changeRoom}) => {
     return (
         <div className="bg-[#141414] rounded-lg p-2 h-[calc(90%)] overflow-y-auto">
             {
@@ -9,7 +9,7 @@ const ContactList = ({chatList, selectedChatroom, handleState}) => {
                         key={i}
                         userID={frdsDetail.userA} 
                         chatRoom={frdsDetail}
-                        handleState={handleState}
+                        changeRoom={changeRoom}
                         selectedChatroom={selectedChatroom}
                     />
                 ))

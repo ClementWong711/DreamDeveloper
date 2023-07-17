@@ -1,5 +1,5 @@
 import Footer from './Components/Footer';
-import LoginSignUpSwitch from './Components/LoginSignUpSwitch';
+import LoginSignUpSwitch from './pages/AuthPage/LoginSignUpSwitch';
 import SideNav from './Components/SideNav';
 import ChatPage from './pages/ChatPage/ChatPage';
 import UserBox from './pages/ChatPage/UserBox';

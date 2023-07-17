@@ -1,63 +1,53 @@
 import ChatBox from "./ChatBox";
 import ChatRoomList from "./ChatRoomList";
 import React, { useEffect, useState } from 'react';
+import { useChatMessagesContext } from "../../Hooks/useChatMessagesContext";
 
 const ChatPage = () => {
-    const[chatroomsArr, setChatrooms] = useState([]);
+    const {chatmessages, dispatch} = useChatMessagesContext()
+    const [chatroomsArr, setChatrooms] = useState([]);
     const [chatRoomSelected, setchatRoomSelected] = useState("")
-    const [MessageList, setMessages] = useState([])
-    const roomMessageList = MessageList.find((messageItem) => messageItem.chatroomID === chatRoomSelected._id)
-    const [selectedRoomMessageList, setRoomMessage] = useState(roomMessageList)
-    console.log(selectedRoomMessageList)
+    const foundMessages = (chatmessages)?chatmessages.filter(message=>message.chatroomID === chatRoomSelected._id):[]
+
+    const changeRoom = (newRoom) => {
+        setchatRoomSelected(newRoom)
+    }
 
     useEffect(() => {
         const fetchChatrooms = async () => {
-            const response = await fetch(`/api/chatroom`);
+            const response = await fetch('/api/chatroom');
             const json = await response.json();
 
-            if(typeof json != 'undefined'){
+            if(json !== ''){
                 setChatrooms(json);
                 setchatRoomSelected(json[0]);
             }
         };
-        
-        fetchChatrooms();
-    }, []);
 
-    const handleState = (chatRoom) => {
-        setchatRoomSelected(chatRoom);
-        const roomMessageList = MessageList.find((messageItem) => messageItem.chatroomID === chatRoomSelected._id)
-        setRoomMessage(roomMessageList)
-    }
+        const fetchChatMessges = async () => {
+            const response = await fetch('/api/chatmessage')
+            const json = await response.json()
 
-    useEffect(() => {
-        const fetchChatmessages = async () => {
-            const response = await fetch(`/api/chatmessage`);
-            const json = await response.json();
-
-            if(typeof json != 'undefined'){
-                setTimeout(()=>{
-                    setMessages(json);
-                }, 2000)
+            if(response.ok){
+                dispatch({type:'SET_MESSAGES', payload:json})
             }
-        };
+        }
         
-        fetchChatmessages();
-
-        
-    })
+        fetchChatrooms()
+        fetchChatMessges()
+    }, []);
 
     return (
         <div className="bg-[#0e0e0e] rounded-3xl p-5 flex h-[calc(70%)] w-[calc(70%)]">
             <ChatRoomList 
                 chatList={chatroomsArr}
                 selectedChatroom={chatRoomSelected}
-                handleState={handleState}
+                changeRoom={changeRoom}
             />
             <ChatBox 
-                chatWithUser={chatRoomSelected.userA} 
-                chatRoomMessagesList={selectedRoomMessageList} 
-                chatRoomID={chatRoomSelected._id}/>
+                chatWithUser={chatRoomSelected.userA}
+                chatRoomMessages={foundMessages}/>
+            
         </div>
     );
 
