@@ -1,9 +1,10 @@
 import Footer from './Components/Footer';
-import LoginSignUpSwitch from './pages/AuthPage/LoginSignUpSwitch';
 import SideNav from './Components/SideNav';
 import ChatPage from './pages/ChatPage/ChatPage';
 import UserBox from './pages/ChatPage/UserBox';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import Signup from './pages/AuthPage/Signup';
+import Login from './pages/AuthPage/Login';
 
 
 function App() {
@@ -22,7 +23,10 @@ function App() {
             <h1>Home</h1>
           </Route>
           <Route path="/login">
-            <LoginSignUpSwitch/>
+            <Login/>
+          </Route>
+          <Route path="/signup">
+            <Signup/>
           </Route>
           <Route path="/chat">
             <ChatPage/>
