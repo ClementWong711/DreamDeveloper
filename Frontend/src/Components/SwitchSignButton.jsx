@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-const SwitchSignButton = ({setSign, sign}) => {
+const SwitchSignButton = ({sign}) => {
 
     return (
         <div className="w-full flex justify-center p-2">

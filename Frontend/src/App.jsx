@@ -1,10 +1,10 @@
-import Footer from './Components/Footer';
-import SideNav from './Components/SideNav';
-import ChatPage from './pages/ChatPage/ChatPage';
-import UserBox from './pages/ChatPage/UserBox';
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import Signup from './pages/AuthPage/Signup';
-import Login from './pages/AuthPage/Login';
+import Footer from './Components/Footer'
+import SideNav from './Components/SideNav'
+import UserBox from './Components/UserBox'
+import ChatPage from './pages/ChatPage/ChatPage'
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom"
+import Signup from './pages/AuthPage/Signup'
+import Login from './pages/AuthPage/Login'
 
 
 function App() {
@@ -15,7 +15,7 @@ function App() {
         <SideNav />
       </div>
       <div className="flex w-full justify-end fixed">
-        <UserBox/>
+        <UserBox />
       </div>
       <div className="h-screen w-screen flex justify-center items-center text-white">
         <Switch>
