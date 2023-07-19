@@ -7,8 +7,7 @@ import { useLogout } from "../Hooks/useLogout";
 const UserBox = () => {
     const [option, setOption] = useState(false)
     const { logout } = useLogout()
-    const nickname = (JSON.parse(localStorage.getItem('user')) === 'undefined')?JSON.parse(localStorage.getItem('user')).nick_name:''
-
+    const nickname = (localStorage.getItem('user') !== null)?(JSON.parse(localStorage.getItem('user')).nick_name):''
     const handleLogout = () => {
         logout()
     }

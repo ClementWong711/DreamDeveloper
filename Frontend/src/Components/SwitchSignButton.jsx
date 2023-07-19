@@ -11,7 +11,6 @@ const SwitchSignButton = ({sign}) => {
             <Link 
                 to={'/signup'} 
                 className={`px-4 py-2 rounded-r-md ${(sign === 'signup')?'bg-[#00f9ff]':'bg-[#0e0e0e]'}`}
-
             >Sign Up</Link>
         </div>
     );

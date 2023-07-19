@@ -16,6 +16,12 @@ const Signup = () => {
 
         if(cfmpassword === password){
             await signup(email, nick_name, unique_name, password)
+
+            setUsername('')
+            setUniquename('')
+            setEmail('')
+            setPassword('')
+            setCFMPassword('')
         }else{
             setWrongPW(true)
         }
