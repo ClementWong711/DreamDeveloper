@@ -6,8 +6,10 @@ const {
     deleteChatmessage,
     updateChatmessage,
 } = require("../controllers/messageController")
+const requireAuth = require('../middleware/requireAuth')
 
 const router = express.Router();
+router.use(requireAuth)
 
 // get all chatroom
 router.get('/', getChatmessages)

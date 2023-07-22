@@ -2,9 +2,10 @@ import React from "react";
 import dayjs from "dayjs";
 
 const MessageItem = ({message, MyUserID}) => {
-    const ShowTime = dayjs(message.messageTime).format("HH:mm");
-    const ShowDateTime = dayjs(message.messageTime).format("YYYY-MM-DD HH:mm");
-    const MessageTime = dayjs(message.messageTime).format("YYYY-MM-DD");
+    console.log(message)
+    const ShowTime = dayjs(message.send_time).format("HH:mm");
+    const ShowDateTime = dayjs(message.send_time).format("YYYY-MM-DD HH:mm");
+    const MessageTime = dayjs(message.send_time).format("YYYY-MM-DD");
     const current = new Date();
     const CurrentDate = current.getFullYear()+"-"+(current.getMonth()+1)+"-"+current.getDate();
     const CurrentDateFormatted = dayjs(CurrentDate).format("YYYY-MM-DD");

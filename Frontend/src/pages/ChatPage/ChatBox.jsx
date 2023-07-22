@@ -4,6 +4,7 @@ import icon from "../../img/myicon.png";
 import MessageBox from "./MessageBox";
 import InputMessageBox from "./InputMessageBox";
 import { useChatMessagesContext } from "../../Hooks/useChatMessagesContext";
+import { useAuthContext } from "../../Hooks/useAuthContext";
 
 const ChatBox = ({chatWithUser, chatRoomMessages}) => {
     const { dispatch } = useChatMessagesContext()
@@ -12,17 +13,24 @@ const ChatBox = ({chatWithUser, chatRoomMessages}) => {
     const chatroomID = (chatRoomMessages.length > 0)?chatRoomMessages[0].chatroomID:""
     const sender = MyUserID
     const [error, setError] = useState(null)
+    const { user } = useAuthContext()
 
 
     const handleSubmit = async (e) => {
         e.preventDefault()
+
+        if(!user){
+            setError('You must be logged in')
+            return
+        }
 
         const chatMessage = {chatroomID, sender, message}
         const response = await fetch('/api/chatmessage', {
             method: 'POST',
             body: JSON.stringify(chatMessage),
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${user.token}`
             }
         })
         const json = await response.json()
