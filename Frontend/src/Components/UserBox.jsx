@@ -4,14 +4,17 @@ import { AiOutlineLogout } from "react-icons/ai";
 import { useLogout } from "../Hooks/useLogout";
 import { useAuthContext } from "../Hooks/useAuthContext";
 import { Link } from "react-router-dom";
+import { useChatMessagesContext } from "../Hooks/useChatMessagesContext";
 
 
 const UserBox = () => {
     const [option, setOption] = useState(false)
+    const { dispatch } = useChatMessagesContext()
     const { logout } = useLogout()
     const { user } = useAuthContext()
     const nickname = (user !== null)?(user.nick_name):''
     const handleLogout = () => {
+        dispatch({type: 'SET_MESSAGES', payload: []})
         logout()
     }
 
@@ -26,8 +29,8 @@ const UserBox = () => {
             </div>
             <Link 
                 className={`bg-[#0e0e0e] text-white m-3 mr-5 px-6 p-2 rounded-xl text-lg flex space-x-4 cursor-pointer duration-500 whitespace-pre
-                            ${!option && 'opacity-0 -translate-y-10 overflow-hidden'
-                        }`}
+                            ${!option && 'opacity-0 -translate-x-10 overflow-hidden'}`
+                        }
                 onClick={handleLogout}
                 to={'/login'}
             >

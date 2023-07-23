@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { TbDotsVertical } from "react-icons/tb";
 import icon from "../../img/myicon.png"; 
 import MessageBox from "./MessageBox";
@@ -6,15 +6,33 @@ import InputMessageBox from "./InputMessageBox";
 import { useChatMessagesContext } from "../../Hooks/useChatMessagesContext";
 import { useAuthContext } from "../../Hooks/useAuthContext";
 
-const ChatBox = ({chatWithUser, chatRoomMessages}) => {
-    const { dispatch } = useChatMessagesContext()
-    const [message, setChatmessage] = useState('')
-    const MyUserID = "clement711";
-    const chatroomID = (chatRoomMessages.length > 0)?chatRoomMessages[0].chatroomID:""
-    const sender = MyUserID
-    const [error, setError] = useState(null)
+const ChatBox = ({chatWithUser, selectedChatroom}) => {
+    const { chatmessages, dispatch } = useChatMessagesContext()
     const { user } = useAuthContext()
+    const [message, setChatmessage] = useState('')
+    const chatroomID = selectedChatroom._id
+    const sender = user.unique_name
+    const [error, setError] = useState(null)
+    
 
+    useEffect(() => {
+        const fetchChatMessges = async () => {
+            const response = await fetch(`/api/chatmessage/${chatroomID}`, {
+                headers: {
+                    'Authorization': `Bearer ${user.token}`
+                }
+            })
+            const json = await response.json()
+    
+            if(response.ok){
+                dispatch({type:'SET_MESSAGES', payload:json})
+            }
+        }
+
+        if(user){
+            fetchChatMessges()
+        }
+    }, [selectedChatroom])
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -24,7 +42,7 @@ const ChatBox = ({chatWithUser, chatRoomMessages}) => {
             return
         }
 
-        const chatMessage = {chatroomID, sender, message}
+        const chatMessage = { chatroomID, sender, message}
         const response = await fetch('/api/chatmessage', {
             method: 'POST',
             body: JSON.stringify(chatMessage),
@@ -55,7 +73,7 @@ const ChatBox = ({chatWithUser, chatRoomMessages}) => {
                 </div>
                 <span className="flex justify-item-center items-center mr-3">{React.createElement(TbDotsVertical, {size: 30})}</span>
             </div>
-            <MessageBox chatRoomMessages={chatRoomMessages} MyUserID={MyUserID}/>
+            <MessageBox chatRoomMessages={chatmessages} MyUserID={sender}/>
             <InputMessageBox handleSubmit={handleSubmit} setChatmessage={setChatmessage} messageValue={message}/>
         </div>
     );

@@ -16,6 +16,9 @@ const userSchema = new Schema({
         required: true,
         unique: true
     },
+    friend_list: {
+        type: Array
+    },
     password: {
         type: String,
         required: true

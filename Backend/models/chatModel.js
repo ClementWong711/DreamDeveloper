@@ -6,12 +6,8 @@ const chatRoomSchemaOptions = {
 };
 
 const ChatRoomSchema = new Schema({
-    userA: {
-        type: String,
-        required: true
-    },
-    userB: {
-        type: String,
+    user: {
+        type: Array,
         required: true
     },
     lastChatUser:{

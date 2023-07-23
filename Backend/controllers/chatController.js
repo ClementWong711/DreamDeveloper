@@ -9,13 +9,9 @@ const getChatrooms = async (req, res) => {
 }
 // get a single chatroom
 const getChatroom = async (req, res) => {
-    const {id} = req.params
+    const { id } = req.params
 
-    if(!mongoose.Types.ObjectId.isValid(id)) {
-        return res.status(404).json({error: "No such ID"})
-    }
-
-    const chatroom = await Chatroom.findById(id)
+    const chatroom = await Chatroom.find({user: id}).sort({last_chat_time: -1})
 
     if(!chatroom){
         return res.status(400).json({error: 'No Such Chatroom'})
@@ -25,11 +21,10 @@ const getChatroom = async (req, res) => {
 
 // create new chatroom
 const createChatroom = async (req, res) => {
-    const userA = req.body.userA
-    const userB = req.body.userB
-    const lastChatUser = req.body.lastChatUser?req.body.lastChatUser:req.body.userB
+    const user = req.body.user
+    const lastChatUser = req.body.lastChatUser?req.body.lastChatUser:req.body.user[0]
     try{
-        const chatroom = await Chatroom.create({userA, userB, lastChatUser})
+        const chatroom = await Chatroom.create({user, lastChatUser})
         res.status(200).json(chatroom)
     } catch (error) {
         res.status(400).json({error: error.message})

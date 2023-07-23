@@ -2,7 +2,6 @@ import React from "react";
 import dayjs from "dayjs";
 
 const MessageItem = ({message, MyUserID}) => {
-    console.log(message)
     const ShowTime = dayjs(message.send_time).format("HH:mm");
     const ShowDateTime = dayjs(message.send_time).format("YYYY-MM-DD HH:mm");
     const MessageTime = dayjs(message.send_time).format("YYYY-MM-DD");

@@ -11,10 +11,6 @@ const getChatmessages = async (req, res) => {
 const getChatmessage = async (req, res) => {
     const {id} = req.params
 
-    if(!mongoose.Types.ObjectId.isValid(id)) {
-        return res.status(404).json({error: "No such ID"})
-    }
-
     const chatmessage = await ChatMessage.find({chatroomID: id})
 
     if(!chatmessage){
