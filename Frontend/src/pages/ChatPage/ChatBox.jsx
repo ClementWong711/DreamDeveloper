@@ -6,6 +6,7 @@ import InputMessageBox from "./InputMessageBox";
 import { useChatMessagesContext } from "../../Hooks/useChatMessagesContext";
 import { useAuthContext } from "../../Hooks/useAuthContext";
 
+
 const ChatBox = ({chatWithUser, selectedChatroom}) => {
     const { chatmessages, dispatch } = useChatMessagesContext()
     const { user } = useAuthContext()
@@ -13,6 +14,18 @@ const ChatBox = ({chatWithUser, selectedChatroom}) => {
     const chatroomID = selectedChatroom._id
     const sender = user.unique_name
     const [error, setError] = useState(null)
+
+    const WS_URL = 'ws://localhost:5001';
+    const wss = new WebSocket(WS_URL);
+
+    wss.onopen = (event) => {
+        console.log("Successfully connect to Socket server")
+        wss.send('Hello Socket Server');
+    };
+
+    wss.onmessage = (event) => {
+        console.log(event.data)
+    };
     
 
     useEffect(() => {
