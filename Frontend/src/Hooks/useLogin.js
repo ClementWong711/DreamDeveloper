@@ -27,7 +27,7 @@ export const useLogin = () => {
 
             // update auth context
             dispatch({type: 'LOGIN', payload: json})
-            
+
             setIsLoading(false)
             setError(null)
         }

@@ -5,6 +5,7 @@ import MessageBox from "./MessageBox";
 import InputMessageBox from "./InputMessageBox";
 import { useChatMessagesContext } from "../../Hooks/useChatMessagesContext";
 import { useAuthContext } from "../../Hooks/useAuthContext";
+const wss = new WebSocket('ws://localhost:5001');
 
 
 const ChatBox = ({chatWithUser, selectedChatroom}) => {
@@ -14,19 +15,20 @@ const ChatBox = ({chatWithUser, selectedChatroom}) => {
     const chatroomID = selectedChatroom._id
     const sender = user.unique_name
     const [error, setError] = useState(null)
-
-    const WS_URL = 'ws://localhost:5001';
-    const wss = new WebSocket(WS_URL);
-
+    
     wss.onopen = (event) => {
-        console.log("Successfully connect to Socket server")
-        wss.send('Hello Socket Server');
-    };
+        wss.send(JSON.stringify({type:"Connect",data:"Hello Server"}))
+    }
 
     wss.onmessage = (event) => {
-        console.log(event.data)
+        const messageData = JSON.parse(event.data);
+        if(messageData.chatroomID && messageData.chatroomID === chatroomID){
+            console.log(messageData)
+            setError(null)
+            setChatmessage('')
+            dispatch({type:'ADD_MESSAGE', payload: messageData})
+        }
     };
-    
 
     useEffect(() => {
         const fetchChatMessges = async () => {
@@ -56,25 +58,7 @@ const ChatBox = ({chatWithUser, selectedChatroom}) => {
         }
 
         const chatMessage = { chatroomID, sender, message}
-        const response = await fetch('/api/chatmessage', {
-            method: 'POST',
-            body: JSON.stringify(chatMessage),
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${user.token}`
-            }
-        })
-        const json = await response.json()
-
-        if(!response.ok){
-            setError(json.error)
-        }
-        if(response.ok){
-            setError(null)
-            setChatmessage('')
-            console.log('new message created!')
-            dispatch({type: 'ADD_MESSAGE', payload: json})
-        }
+        wss.send(JSON.stringify({type:"message",data:chatMessage, token:user.token}));
     }
 
     return (
