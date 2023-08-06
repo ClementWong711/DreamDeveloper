@@ -1,5 +1,4 @@
-const mongoose = require('mongoose')
-const { Schema } = mongoose;
+import mongoose, { Schema } from 'mongoose';
 
 const chatRoomSchemaOptions = {
     timestamps: { createdAt: 'created_at', updatedAt: 'last_chat_time' },
@@ -16,4 +15,4 @@ const ChatRoomSchema = new Schema({
     }
 }, chatRoomSchemaOptions)
 
-module.exports = mongoose.model('Chatroom', ChatRoomSchema)
+export default mongoose.model('Chatroom', ChatRoomSchema)

@@ -1,12 +1,12 @@
-const express = require('express');
-const {
+import express from 'express';
+import {
     createChatroom,
     getChatrooms,
     getChatroom,
     deleteChatroom,
     updateChatroom,
-} = require("../controllers/chatController")
-const requireAuth = require('../middleware/requireAuth')
+} from '../controllers/chatController.js';
+import requireAuth from  '../middleware/requireAuth.js';
 
 const router = express.Router();
 
@@ -28,4 +28,4 @@ router.delete('/:id', deleteChatroom)
 router.patch('/:id', updateChatroom)
 
 
-module.exports = router
+export default router;

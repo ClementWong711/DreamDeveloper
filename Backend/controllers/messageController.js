@@ -1,5 +1,5 @@
-const ChatMessage = require('../models/messageModel')
-const mongoose = require("mongoose")
+import ChatMessage from '../models/messageModel.js';
+import mongoose from 'mongoose';
 
 // get all chatmessage
 const getChatmessages = async (req, res) => {
@@ -63,7 +63,7 @@ const updateChatmessage = async (req, res) => {
     res.status(200).json(chatmessage)
 }
 
-module.exports = {
+export {
     createChatmessage,
     getChatmessages,
     getChatmessage,

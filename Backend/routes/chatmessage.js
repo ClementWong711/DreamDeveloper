@@ -1,12 +1,12 @@
-const express = require('express');
-const {
+import express from 'express';
+import {
     createChatmessage,
     getChatmessages,
     getChatmessage,
     deleteChatmessage,
     updateChatmessage,
-} = require("../controllers/messageController")
-const requireAuth = require('../middleware/requireAuth')
+} from '../controllers/messageController.js';
+import requireAuth from '../middleware/requireAuth.js';
 
 const router = express.Router();
 router.use(requireAuth)
@@ -26,5 +26,4 @@ router.delete('/:id', deleteChatmessage)
 // UPDATE a chat
 router.patch('/:id', updateChatmessage)
 
-
-module.exports = router
+export default router;

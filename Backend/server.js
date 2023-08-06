@@ -1,13 +1,13 @@
-const express = require('express');
-const mongoose = require('mongoose')
-require('dotenv').config();
+import express from 'express';
+import mongoose from 'mongoose';
+import 'dotenv/config';
 
 
 // express app
 const app = express();
-const chatroomRoutes = require('./routes/chatroom')
-const chatmessageRoutes = require('./routes/chatmessage')
-const userRoutes = require('./routes/user')
+import chatroomRoutes from './routes/chatroom.js';
+import chatmessageRoutes from './routes/chatmessage.js';
+import userRoutes from './routes/user.js'
 
 // middleware
 app.use(express.json())

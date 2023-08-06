@@ -1,5 +1,5 @@
-const Chatroom = require('../models/chatModel')
-const mongoose = require("mongoose")
+import Chatroom from '../models/chatModel.js';
+import mongoose from "mongoose";
 
 // get all chatroom
 const getChatrooms = async (req, res) => {
@@ -62,10 +62,10 @@ const updateChatroom = async (req, res) => {
     res.status(200).json(chatroom)
 }
 
-module.exports = {
+export {
     createChatroom,
     getChatrooms,
     getChatroom,
     deleteChatroom,
     updateChatroom
-}
+};
