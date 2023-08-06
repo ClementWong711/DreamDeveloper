@@ -43,6 +43,8 @@ const ChatPage = () => {
             <ChatBox 
                 chatWithUser={chatWithUser}
                 selectedChatroom={chatRoomSelected}
+                chatroomsArr={chatroomsArr}
+                setChatrooms={setChatrooms}
             />
             
         </div>

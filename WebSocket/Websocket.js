@@ -9,7 +9,7 @@ const server = createServer(app);
 const wss = new WebSocketServer({ server: server });
 
 const postChatMessage = async ({messageData, userToken}) => {
-    const response = await fetch('http://localhost:5000/api/chatmessage', {
+    const response1 = await fetch('http://localhost:5000/api/chatmessage', {
         method: 'POST',
         body: JSON.stringify(messageData),
         headers: {
@@ -17,13 +17,30 @@ const postChatMessage = async ({messageData, userToken}) => {
             'Authorization': `Bearer ${userToken}`
         }
     })
-    const json = await response.json()
+    const json1 = await response1.json()
 
-    if(!response.ok){
-        console.log(json.error)
+    if(!response1.ok){
+        console.log(json1.error)
     }
-    if(response.ok){
+    if(response1.ok){
         console.log("saved message")
+    }
+
+    const response2 = await fetch(`http://localhost:5000/api/chatroom/${messageData.chatroomID}`, {
+        method: 'PATCH',
+        body: JSON.stringify({"lastChatUser":messageData.sender}),
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${userToken}`
+        }
+    })
+    const json2 = await response2.json()
+
+    if(!response2.ok){
+        console.log(json2.error)
+    }
+    if(response2.ok){
+        console.log("updated chatroom")
     }
 }
 

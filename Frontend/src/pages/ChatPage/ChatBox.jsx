@@ -8,7 +8,7 @@ import { useAuthContext } from "../../Hooks/useAuthContext";
 const wss = new WebSocket('ws://localhost:5001');
 
 
-const ChatBox = ({chatWithUser, selectedChatroom}) => {
+const ChatBox = ({chatWithUser, selectedChatroom, chatroomsArr, setChatrooms}) => {
     const { chatmessages, dispatch } = useChatMessagesContext()
     const { user } = useAuthContext()
     const [message, setChatmessage] = useState('')
@@ -58,6 +58,10 @@ const ChatBox = ({chatWithUser, selectedChatroom}) => {
         }
 
         const chatMessage = { chatroomID, sender, message}
+        console.log(chatroomsArr)
+        chatroomsArr = chatroomsArr.filter(chatroom => chatroom._id !== chatroomID)
+        chatroomsArr.unshift(selectedChatroom)
+        setChatrooms(chatroomsArr)
         wss.send(JSON.stringify({type:"message",data:chatMessage, token:user.token}));
     }
 
