@@ -40,9 +40,20 @@ const userSignup = async (req, res) => {
 
 }
 
+const userData = async (req, res) => {
+    const { username } = req.params
+
+    const user = await User.find({unique_name: username})
+
+    if(!user){
+        return res.status(400).json({error: 'No Such user'})
+    }
+    res.status(200).json(user)
+}
 
 
 export {
     userLogin,
-    userSignup
+    userSignup,
+    userData
 }

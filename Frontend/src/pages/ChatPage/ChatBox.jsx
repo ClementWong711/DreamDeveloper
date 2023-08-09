@@ -5,6 +5,7 @@ import MessageBox from "./MessageBox";
 import InputMessageBox from "./InputMessageBox";
 import { useChatMessagesContext } from "../../Hooks/useChatMessagesContext";
 import { useAuthContext } from "../../Hooks/useAuthContext";
+import useFetch from "../../Hooks/useFetch";
 const wss = new WebSocket('ws://localhost:5001');
 
 
@@ -15,6 +16,9 @@ const ChatBox = ({chatWithUser, selectedChatroom, chatroomsArr, setChatrooms}) =
     const chatroomID = selectedChatroom._id
     const sender = user.unique_name
     const [error, setError] = useState(null)
+
+    const userData = useFetch(`/user/user/${chatWithUser}`)
+    const frdName = (userData !== null)?userData[0].nick_name:""
     
     wss.onopen = (event) => {
         wss.send(JSON.stringify({type:"Connect",data:"Hello Server"}))
@@ -70,7 +74,7 @@ const ChatBox = ({chatWithUser, selectedChatroom, chatroomsArr, setChatrooms}) =
             <div className="flex justify-between">
                 <div className="flex text-xl">
                     <img src={icon} alt="icon" className="w-10 mr-2"/>
-                    <span className="flex items-center">{chatWithUser}</span>
+                    <span className="flex items-center">{frdName}</span>
                 </div>
                 <span className="flex justify-item-center items-center mr-3">{React.createElement(TbDotsVertical, {size: 30})}</span>
             </div>
