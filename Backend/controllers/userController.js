@@ -51,9 +51,22 @@ const userData = async (req, res) => {
     res.status(200).json(user)
 }
 
+const userUpdate = async (req, res) => {
+    const { username } = req.params
+
+    const userProfile = await User.findOneAndUpdate({unique_name: username},{
+        ...req.body
+    })
+    if(!userProfile){
+        return res.status(400).json({error: 'No Such user'})
+    }
+    res.status(200).json(userProfile)
+}
+
 
 export {
     userLogin,
     userSignup,
-    userData
+    userData,
+    userUpdate
 }

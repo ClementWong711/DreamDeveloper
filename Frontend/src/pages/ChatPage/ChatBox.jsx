@@ -17,7 +17,7 @@ const ChatBox = ({chatWithUser, selectedChatroom, chatroomsArr, setChatrooms}) =
     const sender = user.unique_name
     const [error, setError] = useState(null)
 
-    const userData = useFetch(`/user/user/${chatWithUser}`)
+    const userData = useFetch(`/user/${chatWithUser}`)
     const frdName = (userData !== null)?userData[0].nick_name:""
     
     wss.onopen = (event) => {
