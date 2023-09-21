@@ -9,7 +9,7 @@ const server = createServer(app);
 const wss = new WebSocketServer({ server: server });
 
 const postChatMessage = async ({messageData, userToken}) => {
-    const response1 = await fetch('http://localhost:5000/api/chatmessage', {
+    const response1 = await fetch('http://localhost:5050/api/chatmessage', {
         method: 'POST',
         body: JSON.stringify(messageData),
         headers: {
@@ -26,7 +26,7 @@ const postChatMessage = async ({messageData, userToken}) => {
         console.log("saved message")
     }
 
-    const response2 = await fetch(`http://localhost:5000/api/chatroom/${messageData.chatroomID}`, {
+    const response2 = await fetch(`http://localhost:5050/api/chatroom/${messageData.chatroomID}`, {
         method: 'PATCH',
         body: JSON.stringify({"lastChatUser":messageData.sender}),
         headers: {
