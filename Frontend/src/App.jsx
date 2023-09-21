@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-d
 import Signup from './pages/AuthPage/Signup'
 import Login from './pages/AuthPage/Login'
 import { useAuthContext } from './Hooks/useAuthContext'
+import UserProfilePage from './pages/UserProfilePage/UserProfilePage'
 
 
 
@@ -34,19 +35,13 @@ function App() {
             {!user ? <Signup /> : <Redirect to="/" />}
           </Route>
           <Route exact path="/" >
-            {user ? <h1>Home</h1> : <Redirect to="/login" />}
+            {user ? <div>home</div> : <Redirect to="/login" />}
           </Route>
           <Route path="/chat" >
             {user ? <ChatPage /> : <Redirect to="/login" />}
           </Route>
-          <Route path="/post">
-            {user ? <h1>IG post</h1> : <Redirect to="/login" />}
-          </Route>
-          <Route path="/search" >
-            {user ? <h1>Search</h1>: <Redirect to="/login" />}
-          </Route>
-          <Route path="/logout" >
-            {user ? <h1>Logout</h1> : <Redirect to="/login" />}   
+          <Route path="/info">
+            {user ? <UserProfilePage/> : <Redirect to="/login" />}
           </Route>
 
         </Switch>

@@ -6,6 +6,7 @@ import { useAuthContext } from "../../Hooks/useAuthContext";
 const ChatPage = () => {
     const [chatroomsArr, setChatrooms] = useState([]);
     const [chatRoomSelected, setchatRoomSelected] = useState("")
+    
     const { user } = useAuthContext()
     const chatWithUser = (typeof chatRoomSelected.user !== 'undefined')?chatRoomSelected.user.find(chatFd => chatFd !== user.unique_name):""
 

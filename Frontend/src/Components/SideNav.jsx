@@ -12,9 +12,7 @@ const SideNav = () => {
     const menus = [
         { name: "Dashboard", link: '/', icon: AiOutlineHome},
         { name: "Chat", link: '/chat', icon: BsChat},
-        { name: "Post", link: '/post', icon: AiOutlinePicture},
-        { name: "Search", link: '/search', icon: AiOutlineSearch},
-        { name: "Logout", link: '/logout', icon: AiOutlineLogout}
+        { name: "User Profit", link: '/info', icon: AiOutlinePicture}
     ]
 
     return (

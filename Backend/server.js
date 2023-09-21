@@ -19,6 +19,7 @@ app.use((req, res, next) => {
 // routes
 app.use('/api/chatroom', chatroomRoutes)
 app.use('/api/chatmessage', chatmessageRoutes)
+
 app.use('/user', userRoutes)
 
 // connect to DB

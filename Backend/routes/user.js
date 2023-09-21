@@ -3,6 +3,7 @@ import {
     userLogin,
     userSignup,
     userData,
+    userUpdate,
 } from '../controllers/userController.js'
 
 const router = express.Router();
@@ -13,7 +14,9 @@ router.post('/login', userLogin)
 // Signup route
 router.post('/signup', userSignup)
 
-router.get('/user/:username', userData)
+router.patch('/:username', userUpdate)
+
+router.get('/:username', userData)
 
 
 export default router;
